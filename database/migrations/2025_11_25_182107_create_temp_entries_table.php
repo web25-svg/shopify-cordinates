@@ -10,6 +10,7 @@ return new class extends Migration
     {
         Schema::create('temp_entries', function (Blueprint $table) {
             $table->id();
+            $table->string('session_token');
             $table->string('product_id');
             $table->double('x');
             $table->double('y');

@@ -16,7 +16,7 @@ use App\Http\Controllers\API\SessionController;
 
 
 
-Route::get('/session-entries', [SessionController::class, 'getEntriesBySessionToken']);
+Route::get('create-session', [SessionController::class, 'getEntriesBySessionToken']);
 
 // Unity APIs
 Route::post('/entries/temp', [TempEntryController::class, 'store']);
@@ -32,7 +32,12 @@ Route::post('/judges/submit', [JudgeController::class, 'submit']);
 Route::get('/get-the-winner', [WinnerController::class, 'getOrCalculateWinners']);
 
 
-Route::get('/temp-entries', [TempEntryController::class, 'getTempEntries']);
-
 Route::get('/judges/entries', [JudgeController::class, 'getEntriesForJudging']);
 
+
+
+//entries get apis
+
+
+Route::get('/entries-temp', [TempEntryController::class, 'getTempEntries']);
+Route::get('/entries-final', [FinalEntryController::class, 'getFinalEntries']);
