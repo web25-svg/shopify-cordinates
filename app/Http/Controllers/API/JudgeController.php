@@ -9,12 +9,26 @@ use App\Models\FinalEntry;
 
 class JudgeController extends Controller
 {
-    // Tool 1: judges submit coordinates
+    // Get entries for judging
+    public function getEntriesForJudging(Request $request)
+    {
+        $request->validate([
+            'product_id' => 'required'
+        ]);
+
+        $entries = FinalEntry::where('product_id', $request->product_id)->get();
+
+        return response()->json([
+            'status' => 'success',
+        ]);
+    }
+
+    // Judges submit coordinates
     public function submit(Request $request)
     {
         $data = $request->validate([
             'judge_id' => 'required|string',
-            'product_id' => 'required',
+            'product_id' => 'required|string',
             'x' => 'required|numeric',
             'y' => 'required|numeric'
         ]);
@@ -23,29 +37,4 @@ class JudgeController extends Controller
 
         return response()->json(['status'=>'success']);
     }
-
-    // // Tool 2: calculate winners
-    // public function calculate()
-    // {
-    //     $entries = FinalEntry::with('judge_entries')->get();
-    //     $results = [];
-
-    //     foreach ($entries as $entry) {
-    //         $avgX = $entry->judge_entries->avg('x');
-    //         $avgY = $entry->judge_entries->avg('y');
-    //         $distance = sqrt($avgX*$avgX + $avgY*$avgY);
-
-    //         $results[] = [                                  
-    //             'entry_id' => $entry->id,
-    //             'player_id' => $entry->player_id,
-    //             'distance' => $distance,
-    //             'amount_paid' => $entry->amount_paid,
-    //             'timestamp' => $entry->created_at
-    //         ];
-    //     }
-
-    //     usort($results, fn($a,$b) => $a['distance'] <=> $b['distance']);
-
-    //     return response()->json($results);
-    // }
 }

@@ -20,19 +20,16 @@ class FinalEntryController extends Controller
         ]);
 
         $temp = TempEntry::findOrFail($data['temp_entry_id']);
-
+        
         $final = FinalEntry::create([
-            'player_id' => $temp->player_id,
+            'session_token' => $temp->session_token,
             'product_id' => $temp->product_id,
             'order_id' => $data['order_id'],
             'customer_email' => $data['customer_email'],
             'x' => $temp->x,
             'y' => $temp->y,
-            // 'entries_count' => $temp->entries_count,
             'amount_paid' => $data['amount_paid']
         ]);
-
-        // $temp->delete();
 
         return response()->json(['status'=>'success']);
     }

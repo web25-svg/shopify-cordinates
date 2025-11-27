@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('judge_entries', function (Blueprint $table) {
             $table->id();
             $table->string('judge_id');
-            $table->foreignId('product_id')->constrained('final_entries')->onDelete('cascade');
+            $table->string('product_id'); 
             $table->double('x');
             $table->double('y');
             $table->timestamps();

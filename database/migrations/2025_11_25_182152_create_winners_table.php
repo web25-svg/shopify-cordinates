@@ -10,8 +10,8 @@ return new class extends Migration
     {
         Schema::create('winners', function (Blueprint $table) {
             $table->id();
-            $table->string('player_id');
             $table->foreignId('entry_id')->constrained('final_entries');
+            $table->string('session_token');
             $table->string('product_id');
             $table->integer('rank');
             $table->double('distance');

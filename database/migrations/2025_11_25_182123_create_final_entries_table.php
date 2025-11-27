@@ -10,8 +10,9 @@ return new class extends Migration
     {
         Schema::create('final_entries', function (Blueprint $table) {
             $table->id();
-            $table->string('player_id');
+            
             $table->string('product_id');
+            $table->string('session_token');
             $table->string('order_id');
             $table->string('customer_email');
             $table->double('x');

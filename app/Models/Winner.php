@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Winner extends Model
 {
-    protected $fillable = ['player_id','entry_id','product_id','rank','distance'];
+    protected $fillable = ['session_token','entry_id','product_id','rank','distance'];
 }
